@@ -97,8 +97,15 @@ class WeatherApp(QWidget):
         """)
 
         self.get_weather_button.clicked.connect(self.get_weather)
+        self.city_input.returnPressed.connect(self.get_weather)
 
     def get_weather(self):
+
+        self.temperature_label.setStyleSheet("font-size: 30px;")
+        self.temperature_label.setText("Fetching weather...")
+        self.emoji_label.clear()
+        self.description_label.clear()
+        QApplication.processEvents()
 
         api_key = "#(Insert your API Key here)"
         city = self.city_input.text()
@@ -190,4 +197,5 @@ if __name__ == "__main__":
     weather_app = WeatherApp()
     weather_app.show()
     sys.exit(app.exec_())
+
 
